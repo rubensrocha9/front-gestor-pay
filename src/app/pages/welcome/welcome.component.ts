@@ -52,7 +52,7 @@ export class WelcomeComponent implements OnInit {
 
   getDashboard(): void {
     LoaderService.toggle({ show: true });
-    this.dashboardService.dashboard(1).pipe(take(1)).subscribe(
+    this.dashboardService.dashboard(this.companyId).pipe(take(1)).subscribe(
       data => {
         LoaderService.toggle({ show: false });
         this.employeeWithHighestAmountName = data.employeeWithHighestAmountName;
