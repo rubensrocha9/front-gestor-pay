@@ -1,0 +1,228 @@
+<div>
+  <h2 style="text-transform: uppercase;">{{ headerTitle }}</h2>
+  <nz-divider></nz-divider>
+</div>
+<div style="margin-bottom: 20px;">
+  <h3>Dados do Funcionário</h3>
+  <nz-tag [nzColor]="'orange'">
+    Obs.: Para mudar o estado do funcionário para <b>Desligado</b>, basta adicionar uma data de saída que o estado do funcionário será alterado e não conseguirá ter mais acesso ao perfil dele.<br>
+    Ao finalizar o cadastro, o funcionário irá receber um e-mail para finalizar o cadastro, então informe um e-mail válido.
+  </nz-tag><br><br>
+  <span style="color: red;">*</span><span> Campos obrigatórios</span>
+</div>
+
+<form nz-form [formGroup]="form" nzLayout="vertical">
+    <div nz-row [nzGutter]="{ xs: 4, sm: 4, md: 8, lg: 8, xl: 16, xxl: 16 }">
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="amount">Nome do Funcionário</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe o nome do funcionário">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="name" placeholder="Nome Completo" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="birthDate">Data de Nascimento</nz-form-label>
+            <nz-form-control nzErrorTip="Por favor informe a data de nascimento do funcionário">
+              <nz-date-picker style="width: 100%;" formControlName="birthDate" [nzDisabledDate]="disabledDate" [nzFormat]="'dd/MM/yyyy'" nzPlaceHolder="Data de Nascimento"></nz-date-picker>
+            </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="documentNumber">Documento</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe o documento do funcionário">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="documentNumber" mask="000.000.000-00||00.000.000/0000-00" [dropSpecialCharacters]="true" placeholder="CPF/CNPJ" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="phoneNumber">Número de Contato</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe o número de contato do funcionário">
+            <nz-input-group [nzAddOnBefore]="countryCodeBeforeTemplate">
+              <input type="text" nz-input formControlName="phoneNumber" maxlength="18" placeholder="Celular" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <ng-template #countryCodeBeforeTemplate>
+          <nz-select ngModel="BR" formControlName="countryCode">
+            <nz-option nzLabel="US" nzValue="US" ></nz-option>
+            <nz-option nzLabel="BR" nzValue="BR"></nz-option>
+          </nz-select>
+        </ng-template>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="{ xs: 4, sm: 4, md: 8, lg: 8, xl: 16, xxl: 16 }">
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-form-label nzRequired nzFor="gender">Gênero</nz-form-label>
+            <nz-select formControlName="gender" nzPlaceHolder="Gênero">
+              <nz-option [nzValue]="1" nzLabel="Masculino"></nz-option>
+              <nz-option [nzValue]="2" nzLabel="Feminino"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-form-label nzRequired nzFor="positionId">Cargo</nz-form-label>
+            <nz-select formControlName="positionId" nzPlaceHolder="Cargo">
+              <nz-option *ngFor="let data of positions" [nzValue]="data.id" [nzLabel]="data.positionName"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="amount">Salário do Funcionário</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe o salário do funcionário">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="amount" mask="separator" decimalMarker="," thousandSeparator="." [dropSpecialCharacters]="true" placeholder="Salário" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="email">Email</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe o email do funcionário">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="email" placeholder="Email" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="{ xs: 4, sm: 4, md: 8, lg: 8, xl: 16, xxl: 16 }">
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="entryDate">Data de Entrada</nz-form-label>
+            <nz-form-control nzErrorTip="Por favor informe a data de Entrada do funcionário">
+              <nz-date-picker style="width: 100%;" formControlName="entryDate" [nzDisabledDate]="disabledDate" [nzFormat]="'dd/MM/yyyy'" nzPlaceHolder="Data de Entrada"></nz-date-picker>
+            </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzFor="departureDate">Data de Saída</nz-form-label>
+            <nz-form-control nzErrorTip="Por favor informe a data de Saída do funcionário">
+              <nz-date-picker style="width: 100%;" formControlName="departureDate" [nzDisabledDate]="disabledDate" [nzFormat]="'dd/MM/yyyy'" nzPlaceHolder="Data de Saída"></nz-date-picker>
+            </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+  </form>
+
+  <nz-divider></nz-divider>
+
+  <h3>Endereço</h3>
+
+  <form nz-form [formGroup]="formAddress" nzLayout="vertical">
+    <div nz-row [nzGutter]="{ xs: 4, sm: 4, md: 8, lg: 8, xl: 16, xxl: 16 }">
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="zipCode">CEP</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe o cep do funcionário">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="zipCode" placeholder="CEP" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="district">Bairro</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe a bairro do funcionário">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="district" placeholder="Bairro" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="street">Rua</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe a rua do funcionário">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="street" placeholder="Rua" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="homeNumber">Número</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe o número do endereço funcionário">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="homeNumber" placeholder="Número" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="{ xs: 4, sm: 4, md: 8, lg: 8, xl: 16, xxl: 16 }">
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzFor="complement">Complemento</nz-form-label>
+          <nz-form-control>
+            <nz-input-group>
+              <input type="text" nz-input formControlName="complement" placeholder="Complemento" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="city">Cidade</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe a cidade do funcionário">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="city" placeholder="Cidade" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="state">Estado</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe o estado do funcionário">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="state" placeholder="Estado" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="country">País</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe o país do funcionário">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="country" placeholder="Pais" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+  </form>
+
+<div id="buttons-container">
+  <button nz-button nzType="default" nzDanger (click)="onBack()">Voltar</button>
+  <button nz-button nzType="primary" (click)="onSubmit()">Salvar</button>
+</div>
+
+
+
+
+

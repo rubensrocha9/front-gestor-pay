@@ -1,0 +1,103 @@
+<app-loader></app-loader>
+<nz-layout class="app-layout">
+  @if (!isHideSideBar) {
+    <nz-sider class="menu-sidebar"
+      nzCollapsible
+      nzWidth="256px"
+      nzBreakpoint="md"
+      [(nzCollapsed)]="isCollapsed"
+      [nzTrigger]="null">
+      <div class="sidebar-logo">
+        <img src="assets/images/logo.svg" alt="logo">
+        <h1 style="font-size: 20px;">GestorPay</h1>
+      </div>
+      <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+        @if (isAdmin) {
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="dashboard" routerLinkActive="active">
+            <span nz-icon nzType="appstore"></span>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="expense-manager" routerLinkActive="active">
+            <span nz-icon nzType="bank"></span>
+            <span>Gestão de Gasto</span>
+          </a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="position" routerLinkActive="active">
+            <span nz-icon nzType="idcard"></span>
+            <span>Cargo</span>
+          </a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="employee" routerLinkActive="active">
+            <span nz-icon nzType="team"></span>
+            <span>Funcionário</span>
+          </a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="permission" routerLinkActive="active">
+            <span nz-icon nzType="lock"></span>
+            <span>Permissão</span>
+          </a>
+        </li>
+        @if (isCompany) {
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="company-profile" routerLinkActive="active">
+              <span nz-icon nzType="user"></span>
+              <span>Perfil</span>
+            </a>
+          </li>
+        } @else {
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="employee-profile" routerLinkActive="active">
+              <span nz-icon nzType="user"></span>
+              <span>Perfil</span>
+            </a>
+          </li>
+        }
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="feedback" routerLinkActive="active">
+            <span nz-icon nzType="like"></span>
+            <span>Feedback</span>
+          </a>
+        </li>
+      } @else {
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="employee-profile" routerLinkActive="active">
+            <span nz-icon nzType="user"></span>
+            <span>Perfil</span>
+          </a>
+        </li>
+      }
+      </ul>
+      <ul nz-menu nzTheme="dark" nzMode="inline" class="float-btm">
+        <li nz-menu-item nzMatchRouter>
+          <a (click)="onLogout()">
+            <span nz-icon nzType="logout"></span>
+            <span>Sair</span>
+          </a>
+        </li>
+      </ul>
+    </nz-sider>
+  }
+  <nz-layout>
+    @if (!isHideSideBar) {
+      <nz-header>
+        <div class="app-header">
+          <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+              <span class="trigger"
+                 nz-icon
+                 [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+              ></span>
+            </span>
+        </div>
+      </nz-header>
+    }
+    <nz-content id="main-container"  class="main-container">
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

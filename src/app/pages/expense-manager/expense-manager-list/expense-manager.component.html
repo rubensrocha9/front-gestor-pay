@@ -1,0 +1,52 @@
+<div style="display: flex;">
+  <h2 style="text-transform: uppercase;">Gestão de Gastos</h2>
+  <button style="margin-left: 10px;" nz-button nzType="default" nzShape="circle" (click)="onCreate()">
+    <span nz-icon nzType="plus"></span>
+  </button>
+</div>
+
+<nz-divider></nz-divider>
+<div class="search" style="margin-bottom: 20px; width: 20%;">
+  <nz-input-group [nzSuffix]="closeTemplate" [nzPrefix]="searchTemplate">
+    <input type="text" nz-input [(ngModel)]="searchValue" (input)="searchField($event.target)" placeholder="Buscar por Nome..." />
+  </nz-input-group>
+  <ng-template #closeTemplate>
+    <span *ngIf="searchValue" nz-icon nzType="close" style="cursor: pointer;" aria-hidden="true" (click)="clearInput()"></span>
+  </ng-template>
+  <ng-template #searchTemplate>
+    <span nz-icon nzType="search" aria-hidden="true"></span>
+  </ng-template>
+</div>
+
+<nz-table #basicTable
+  [nzData]="managers"
+  [nzFrontPagination]="false"
+	[nzShowPagination]="true"
+	[nzOuterBordered]="true"
+  [nzTotal]="pagination.totalPages"
+	[nzPageSize]="pagination.itemsPerPage"
+	[nzPageIndex]="pagination.currentPage"
+	(nzQueryParams)="onQueryParamsChange($event)">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Valor</th>
+      <th>Data de Criação</th>
+      <th>Estado</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data" [ngClass]="!data.isExpenseEmployee ? 'cursor-pointer' : 'cursor-none'" (click)="!data.isExpenseEmployee ? onEdit(data.id) : false">
+      <td>{{ data.name }}</td>
+      <td>{{ data.amount | currency: 'BRL' }}</td>
+      <td>{{ data.creationDate | date: 'dd/MM/yyyy' }}</td>
+      <td [ngClass]="data.statusDescription == 'Ativo' ? 'success-color' : 'error-color'">
+        {{ data.statusDescription }}
+      </td>
+      <td *ngIf="!data.isExpenseEmployee">
+        <button nz-button nzType="default" nzShape="circle" nzDanger (click)="onDelete(data.id, $event)"><span nz-icon nzType="delete"></span></button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

@@ -1,0 +1,73 @@
+<div id="login-container">
+  <div>
+    <div class="authentication">
+      <div class="logo">
+        <img src="assets/images/gestorpay.png" alt="logo">
+      </div>
+
+      <form nz-form [formGroup]="registerForm" class="login-form">
+
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Por favor informe o nome da empresa">
+            <nz-input-group nzPrefixIcon="user" style="border-radius: 5px; font-size: 18px;">
+              <input type="text" nz-input formControlName="name" maxlength="100" placeholder="Nome da Empresa"/>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Por favor informe seu documento">
+            <nz-input-group nzPrefixIcon="idcard" style="border-radius: 5px; font-size: 18px;">
+              <input type="text" nz-input formControlName="documentNumber" mask="000.000.000-00||00.000.000/0000-00" [dropSpecialCharacters]="true" placeholder="CPF/CNPJ"/>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Por favor informe seu email">
+            <nz-input-group nzPrefixIcon="mail" style="border-radius: 5px; font-size: 18px;">
+              <input type="email" nz-input formControlName="email" placeholder="Email"  autocomplete="email"/>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Por favor informe sua senha">
+            <nz-input-group [nzSuffix]="passwordVisibleTemplate" nzPrefixIcon="lock" style="border-radius: 5px; font-size: 18px;">
+              <input [type]="passwordVisible ? 'text' : 'password'" nz-input placeholder="Senha" formControlName="password"/>
+            </nz-input-group>
+            <ng-template #passwordVisibleTemplate>
+              <span style="cursor: pointer;" nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></span>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Por favor informe sua senha">
+            <nz-input-group [nzSuffix]="checkPasswordVisibleTemplate" nzPrefixIcon="lock" style="border-radius: 5px; font-size: 18px;">
+              <input [type]="checkPasswordVisible ? 'text' : 'password'" nz-input placeholder="Confirmar Senha" formControlName="checkPassword"/>
+            </nz-input-group>
+            <ng-template #checkPasswordVisibleTemplate>
+              <span style="cursor: pointer;" nz-icon [nzType]="checkPasswordVisible ? 'eye-invisible' : 'eye'" (click)="checkPasswordVisible = !checkPasswordVisible"></span>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <div class="container">
+          <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="onRegister()">Cadastrar</button>
+        </div>
+
+        <div style="text-align: center; margin-top: 10px;">
+          <span>Já possui uma conta? </span>
+          <a (click)="onLogin()">Entrar</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+

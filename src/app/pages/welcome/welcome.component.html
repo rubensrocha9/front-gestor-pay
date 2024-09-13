@@ -1,0 +1,53 @@
+<div class="card">
+  <div nz-row [nzGutter]="{ xs: 4, sm: 4, md: 8, lg: 8, xl: 16, xxl: 16 }">
+    <div nz-col nzSpan="8">
+      <nz-card class="nzCards" style="background-color: #6DAEDB;">
+        <h3 class="style">Último Funcionário contratado</h3>
+        <nz-statistic
+          [nzValue]="(lastEmployeeHiredName)!"
+          [nzValueStyle]="{ color: '#fff' }"
+        ></nz-statistic>
+        <nz-statistic class="style"
+          [nzValue]="(lastEmployeeHiredPosition)!"
+          [nzValueStyle]="{ color: '#fff' }"
+        ></nz-statistic>
+        <nz-statistic class="style"
+          [nzValue]="(lastEmployeeHiredDate | date: 'dd/MM/yyyy')!"
+          [nzValueStyle]="{ color: '#fff' }"
+        ></nz-statistic>
+      </nz-card>
+    </div>
+    <div nz-col nzSpan="8">
+      <nz-card class="nzCards" style="background-color: #2892D7;">
+        <h3 class="style">Funcionários Ativos</h3>
+        <nz-statistic
+          style="font-size: 30px;"
+          [nzValue]="(quantityEmployeesActive | number: '1.0-2')!"
+          [nzPrefix]="prefixTplTwo"
+          [nzValueStyle]="{ color: '#fff' }"
+        ></nz-statistic>
+        <ng-template #prefixTplTwo>
+          <span nz-icon nzType="user"></span>
+        </ng-template>
+      </nz-card>
+    </div>
+    <div nz-col nzSpan="8">
+      <nz-card class="nzCards" style="background-color: #1B4353;">
+        <h3 class="style">Funcionários com maior Salário</h3>
+        <nz-statistic
+          [nzValue]="(employeeWithHighestAmountName)!"
+          [nzValueStyle]="{ color: '#fff' }"
+        ></nz-statistic>
+        <nz-statistic
+          [nzValue]="(employeeWithHighestAmount | currency: 'BRL')!"
+          [nzValueStyle]="{ color: '#fff' }"
+        ></nz-statistic>
+        <nz-statistic
+          [nzValue]="(employeeWithHighestAmountPosition)!"
+          [nzValueStyle]="{ color: '#fff' }"
+        ></nz-statistic>
+      </nz-card>
+    </div>
+  </div>
+
+</div>

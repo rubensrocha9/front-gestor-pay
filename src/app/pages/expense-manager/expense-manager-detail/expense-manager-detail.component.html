@@ -1,0 +1,47 @@
+<div style="display: flex;">
+  <h2 style="text-transform: uppercase;">{{ headerTitle }}</h2>
+</div>
+
+<nz-divider></nz-divider>
+
+<form nz-form [formGroup]="form" nzLayout="vertical">
+    <div nz-row [nzGutter]="{ xs: 4, sm: 4, md: 8, lg: 8, xl: 16, xxl: 16 }">
+      <div nz-col nzSpan="8">
+        <nz-form-item>
+          <nz-form-label nzFor="amount">Nome do Gasto</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe o nome do gasto">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="name" placeholder="Nome do Gasto" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="8">
+        <nz-form-item>
+          <nz-form-label nzFor="amount">Valor do gasto</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe o valor do gasto">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="amount" mask="separator" decimalMarker="," thousandSeparator="." [dropSpecialCharacters]="true" placeholder="Valor" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="8">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-form-label nzFor="status">Estado do gasto</nz-form-label>
+            <nz-select formControlName="status" nzPlaceHolder="Estado">
+              <nz-option [nzValue]="1" nzLabel="Ativo"></nz-option>
+              <nz-option [nzValue]="2" nzLabel="Desativado"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+  <div id="buttons-container">
+    <button nz-button nzType="default" nzDanger (click)="onBack()">Voltar</button>
+    <button nz-button nzType="primary" (click)="onSubmit()">Salvar</button>
+  </div>
+
+

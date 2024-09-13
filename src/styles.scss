@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+.success-color {
+  color: rgb(26, 218, 26);
+}
+
+.error-color {
+  color: red;
+}
+
+
+.main-container router-outlet + * {
+	width: 100%;
+}
+
+#buttons-container {
+	margin: 40px 0 32px;
+	text-align: center;
+
+	> button[nz-button] {
+		margin-right: 16px;
+		&:last-child {
+			margin-right: 0
+		}
+	}
+}
+
+.search {
+
+	.ant-input-affix-wrapper, .ant-picker {
+    border: none;
+    border-bottom: 1px solid #d9d9d9;
+  }
+}

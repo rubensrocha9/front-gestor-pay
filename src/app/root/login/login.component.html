@@ -1,0 +1,54 @@
+<div id="login-container">
+  <div>
+    <div class="authentication">
+      <div class="logo">
+        <img src="assets/images/gestorpay.png" alt="logo">
+      </div>
+
+      <form nz-form [formGroup]="loginForm" class="login-form">
+
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Por favor insira seu email!">
+            <nz-input-group nzPrefixIcon="user" style="border-radius: 5px; font-size: 18px;">
+              <input type="email" nz-input formControlName="email" placeholder="Email"  autocomplete="email"/>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Por favor insira sua senha!">
+
+            <nz-input-group [nzSuffix]="suffixTemplate" nzPrefixIcon="lock" style="border-radius: 5px; font-size: 18px;">
+              <input [type]="passwordVisible ? 'text' : 'password'" nz-input placeholder="Senha" formControlName="password"/>
+            </nz-input-group>
+            <ng-template #suffixTemplate>
+              <span style="cursor: pointer;" nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></span>
+            </ng-template>
+
+          </nz-form-control>
+        </nz-form-item>
+
+        <div nz-row class="login-form-margin">
+          <div nz-col [nzSpan]="24">
+            <a class="login-form-forgot" (click)="onResetPassword()">Esqueceu sua senha?</a>
+          </div>
+        </div>
+
+        <div class="container">
+          <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="onLogin()">Entrar</button>
+        </div>
+
+        <div style="text-align: center;">
+          <span>Não possui nenhuma conta? </span>
+          <a (click)="onRegister()">Cadastre sua empresa</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+

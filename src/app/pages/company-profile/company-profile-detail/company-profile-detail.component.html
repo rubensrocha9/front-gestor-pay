@@ -1,0 +1,148 @@
+<div>
+  <h2 style="text-transform: uppercase;">Dados da Empresa</h2>
+  <nz-divider></nz-divider>
+</div>
+
+<form nz-form [formGroup]="form" nzLayout="vertical">
+  <div nz-row [nzGutter]="{ xs: 4, sm: 4, md: 8, lg: 8, xl: 16, xxl: 16 }">
+    <div nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="amount">Nome da Empresa</nz-form-label>
+        <nz-form-control nzErrorTip="Por favor informe o nome da empresa">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="name" placeholder="Nome Completo" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="documentNumber">Documento</nz-form-label>
+        <nz-form-control nzErrorTip="Por favor informe o documento da empresa">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="documentNumber" mask="000.000.000-00||00.000.000.0000-00" [dropSpecialCharacters]="true" placeholder="CPF/CNPJ" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="email">Email</nz-form-label>
+        <nz-form-control nzErrorTip="Por favor informe o email da empresa">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="email" placeholder="Email" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="phoneNumber">Número de Contato</nz-form-label>
+        <nz-form-control nzErrorTip="Por favor informe o número de contato da empresa">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="phoneNumber" maxlength="18" placeholder="Celular" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+</form>
+
+<nz-divider></nz-divider>
+
+  <h3>Endereço</h3>
+
+  <form nz-form [formGroup]="formAddress" nzLayout="vertical">
+    <div nz-row [nzGutter]="{ xs: 4, sm: 4, md: 8, lg: 8, xl: 16, xxl: 16 }">
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="zipCode">CEP</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe o cep da empresa">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="zipCode" placeholder="CEP" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="district">Bairro</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe a bairro da empresa">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="district" placeholder="Bairro" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="street">Rua</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe a rua da empresa">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="street" placeholder="Rua" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="number">Número</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe o número do endereço da empresa">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="number" placeholder="Número" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="{ xs: 4, sm: 4, md: 8, lg: 8, xl: 16, xxl: 16 }">
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzFor="complement">Complemento</nz-form-label>
+          <nz-form-control>
+            <nz-input-group>
+              <input type="text" nz-input formControlName="complement" placeholder="Complemento" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="city">Cidade</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe a cidade da empresa">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="city" placeholder="Cidade" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="state">Estado</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe o estado da empresa">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="state" placeholder="Estado" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="country">País</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe o país da empresa">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="country" placeholder="Pais" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+  </form>
+
+<div id="buttons-container">
+  <button nz-button nzType="default" nzDanger (click)="onBack()">Voltar</button>
+  <button nz-button nzType="primary" (click)="onSubmit()">Salvar</button>
+</div>

@@ -1,0 +1,51 @@
+<div nz-row [nzGutter]="{ xs: 4, sm: 4, md: 8, lg: 8, xl: 16, xxl: 16 }">
+
+  <div nz-col nzSpan="4">
+    <ng-container *ngIf="imgUrl !== null; else imageTemplate">
+      <div class="image-container">
+        <img class="rounded-image" nzDisablePreview nz-image (click)="triggerFileInput()" [nzSrc]="imgUrl" alt="logo_da_empresa"/>
+        <div class="overlay" (click)="triggerFileInput()">Alterar Imagem</div>
+      </div>
+    </ng-container>
+    <ng-template #imageTemplate>
+      <div class="image-container">
+        <img class="rounded-image" nz-image nzDisablePreview (click)="triggerFileInput()" nzSrc="assets/images/user.png" alt="user_padrao"/>
+        <div class="overlay" (click)="triggerFileInput()">Alterar Imagem</div>
+      </div>
+    </ng-template>
+    <input #fileInput type="file" accept="image/png, image/jpeg, image/jpg" style="display: none;" (change)="onFileSelected($event)" />
+  </div>
+
+
+  <div nz-col nzSpan="20">
+
+    <div nz-row [nzGutter]="{ xs: 4, sm: 4, md: 8, lg: 8, xl: 16, xxl: 16 }" style="display: flex;">
+      <div nz-col nzSpan="20">
+        <h2 style="text-transform: uppercase;">{{ name }}</h2>
+      </div>
+      <div nz-col nzSpan="4">
+        <button style="float: right;" nz-button nzSize="small" nzShape="round" nzType="default" (click)="onEdit()">Editar Perfil</button>
+      </div>
+    </div>
+
+    <nz-descriptions nzBordered nzLayout="vertical" style="margin-bottom: 20px;">
+      <nz-descriptions-item nzTitle="Email">{{ email }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Documento">{{ documentNumber | document }}</nz-descriptions-item>
+    </nz-descriptions>
+  </div>
+</div>
+
+<div style="margin-top: 20px;">
+  <nz-divider></nz-divider>
+  <h2 style="text-transform: uppercase;">Endereço</h2>
+</div>
+
+<nz-descriptions nzBordered nzLayout="vertical" style="margin-bottom: 20px;">
+  <nz-descriptions-item nzTitle="Bairro">{{ district !== '' ? district : '---' }}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Rua">{{ street !== '' ? street : '---' }}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Número">{{ number !== '' ? number : '---' }}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Complemento">{{ complement !== '' ? complement : '---' }}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Cidade">{{ city !== '' ? city : '---' }}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Estado">{{ state !== '' ? state : '---' }}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="País">{{ country !== '' ? country : '---' }}</nz-descriptions-item>
+</nz-descriptions>

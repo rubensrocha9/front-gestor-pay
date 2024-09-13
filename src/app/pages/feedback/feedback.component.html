@@ -1,0 +1,18 @@
+<div style="display: flex;">
+  <h2 style="text-transform: uppercase;">FeedBack</h2>
+</div>
+
+<div nz-row [nzGutter]="{ xs: 4, sm: 4, md: 8, lg: 8, xl: 16, xxl: 16 }">
+  <ng-container *ngFor="let feed of feeds">
+    <div nz-col nzSpan="6" style="margin: 10px;">
+      <nz-comment [nzAuthor]="" [nzDatetime]="(feed.creationDate | date: 'dd/MM/yyyy HH:mm:ss') ?? ''">
+          <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="feedbacks.imgUrl !== null ? feedbacks.imgUrl : 'assets/images/user.png'"></nz-avatar>
+        <nz-comment-content>
+          <p>{{ feed.feedback }}</p>
+        </nz-comment-content>
+      </nz-comment>
+    </div>
+
+  </ng-container>
+
+</div>

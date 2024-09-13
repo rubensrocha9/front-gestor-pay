@@ -1,0 +1,50 @@
+.rounded-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.image-container:hover .overlay {
+  display: flex;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.overlay:hover {
+  backdrop-filter: blur(5px);
+}
+
+.button-container {
+	margin: 10px 0 8px;
+	text-align: center;
+
+	> button[nz-button] {
+		margin-right: 16px;
+		&:last-child {
+			margin-right: 0
+		}
+	}
+}

@@ -1,0 +1,26 @@
+<div style="display: flex;">
+  <h2 style="text-transform: uppercase;">{{ headerTitle }}</h2>
+</div>
+
+<nz-divider></nz-divider>
+
+<form nz-form [formGroup]="form" nzLayout="vertical">
+    <div nz-row [nzGutter]="{ xs: 4, sm: 4, md: 8, lg: 8, xl: 16, xxl: 16 }">
+      <div nz-col nzSpan="8">
+        <nz-form-item>
+          <nz-form-label nzFor="amount">Nome do Cargo</nz-form-label>
+          <nz-form-control nzErrorTip="Por favor informe o nome do cargo">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="name" placeholder="Nome" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+  <div id="buttons-container">
+    <button nz-button nzType="default" nzDanger (click)="onBack()">Voltar</button>
+    <button nz-button nzType="primary" (click)="onSubmit()">Salvar</button>
+  </div>
+
+
